@@ -2,9 +2,9 @@
 
 **Cách dùng:** Thay mọi dấu `…` bằng bài làm thật của bạn trước khi nộp link fork trên [LMS](https://aithucchien.vinuni.edu.vn). Giữ nguyên bốn mục và bảng để coach đọc nhanh. Viết ngắn, cụ thể theo ảnh/vùng; không cần thuật ngữ chuyên sâu. Ví dụ trong [hướng dẫn mẫu](../../reports/REPORT_TEMPLATE.md) chỉ giúp hiểu cách điền, không phải câu trả lời để chép lại.
 
-- Mã học viên theo lớp: …
-- Ngày / CVAT local: …
-- Công cụ đã dùng: …
+- Mã học viên theo lớp: 2A202603143
+- Ngày / CVAT local: 12/12/2026
+- Công cụ đã dùng: gpt, claude, google collab, cvat
 
 Mã học viên là mã lớp cấp; không cần ghi họ tên trong report nếu kênh [LMS](https://aithucchien.vinuni.edu.vn) đã nhận diện bạn. Chỉ ghi công cụ thật sự đã dùng; không có SAM vẫn làm bài bình thường.
 
@@ -14,15 +14,15 @@ Ghi tên ZIP đúng như file trong `submissions/` và số ảnh đã vẽ, Sav
 
 | Task | File ZIP đúng tên | Hoàn thành mấy ảnh | Điểm tối đa (coach chấm sau) |
 | --- | --- | ---: | ---: |
-| easy_semantic | … | … / 3 | 20 |
-| medium_instance | … | … / 3 | 32 |
-| hard_panoptic | … | … / 2 | 30 |
-| cp1_holes | … | … / 1 | 3 |
-| cp2_slice | … | … / 1 | 3 |
+| easy_semantic | easy_semantic.zip | 3 / 3 | 20 |
+| medium_instance | medium_instance.zip | 3 / 3 | 32 |
+| hard_panoptic |hard_panoptic.zip | 2 / 2 | 30 |
+| cp1_holes | cp1_holes.zip | 1 / 1 | 3 |
+| cp2_slice | cp2_slice.zip | 1 / 1 | 3 |
 | cp5_occlusion | … | … / 1 | 3 |
-| cp3_thin | … | … / 1 | 3 |
-| cp4_curb | … | … / 1 | 3 |
-| cp6_coverage | … | … / 1 | 3 |
+| cp3_thin | cp3_thin.zip | 1 / 1 | 3 |
+| cp4_curb | cp4_curb.zip | 1 / 1 | 3 |
+| cp6_coverage | cp6_coverage.zip | 1 / 1 | 3 |
 | **Tổng tối đa** | | | **100** |
 
 Nếu export lỗi, ghi task, dữ liệu đã Save đến đâu và lỗi đã báo coach.
@@ -31,9 +31,11 @@ Nếu export lỗi, ghi task, dữ liệu đã Save đến đâu và lỗi đã 
 
 Chọn object đầu tiên bạn tự vẽ ở `medium_instance`, trước khi xem bất kỳ đề xuất tự động nào cho object đó. Ghi ảnh/vị trí đủ để tìm lại; “quy tắc biên” là lý do bạn chọn hoặc dừng mask ở ranh đó.
 
-- Ảnh, vị trí và object Medium đầu tiên tự vẽ: …
-- Class và quy tắc tôi dùng để chọn biên: …
-- Nếu dùng gợi ý sau đó: vùng gợi ý sai/đúng, hành động sửa/giữ và lý do: …
+- Ảnh, vị trí và object Medium đầu tiên tự vẽ: {"id":1,"width":640,"height":600,"file_name":"000000181542.jpg"}, object bbox:[186.0,131.0,120.0,329.0]
+- Class và quy tắc tôi dùng để chọn biên: class person. Mask đi theo viền object nhìn thấy rõ trong khi loại bỏ những pixel background không liên quan đến vật thể cần mask. 
+Chỉ gán nhãn khi có đủ bằng chứng thị giác để xác định chúng thuộc object.
+Với vùng biên không rõ ràng, ưu tiên đường contour có thể xác định nhất quán.
+- Nếu dùng gợi ý sau đó: vùng gợi ý sai/đúng, hành động sửa/giữ và lý do: không dùng.
 - Nếu không dùng gợi ý: ghi “không dùng”; vẫn giải thích một quyết định gán nhãn của mình.
 
 ## 3. Một lỗi tôi tìm thấy và sửa
@@ -54,6 +56,6 @@ Mỗi ca là một **vùng cụ thể** khiến bạn phải cân nhắc hai cá
 
 | Ảnh/vị trí | Hai cách hiểu có thể | Quy tắc/chứng cứ | Quyết định hoặc câu hỏi cho coach |
 | --- | --- | --- | --- |
-| 1 | … | … | … |
-| 2 | … | … | … |
-| 3 | … | … | … |
+| 000000181542.jpg | vật thể ô tô ở góc trên phải có thể đoán được, nhưng không thể nhìn rõ | Guide: vẽ phần nhìn thấy, không tự đoán -> Quyết định chỉ mask một phần nhìn rõ | |
+| 000000350023.jpg / Vật thể hình hộp chữ nhật ở cuối góc dưới phải | Nhìn giống xe bus hoặc tàu điện | Không có label cho tàu điện -> vật thể chưa thể nhận dạng -> Không gắn nhãn | … |
+| 000000460147.jpg / nhiều objects car, bus, truck | Vật thể chưa xác định được, không rõ thuộc class bus hay truck | Guide: chỉ gán phần nhìn thấy, không đoán -> Không gán nhãn | … |
